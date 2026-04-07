@@ -1314,6 +1314,278 @@
     @media (hover: none) {
       .mvv-card, .prod-card, .premium-card { transform: none !important; }
     }
+
+    /* ══════════════════════════════════
+       NÚMEROS
+    ══════════════════════════════════ */
+    #numeros {
+      background: var(--laranja);
+      padding: 72px 0;
+    }
+    .numeros-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+    .numero-item {
+      text-align: center;
+      padding: 32px 20px;
+      border-right: 1px solid rgba(255,255,255,0.2);
+      position: relative;
+    }
+    .numero-item:last-child { border-right: none; }
+    .numero-icon {
+      font-size: 1.8rem;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 12px;
+      display: block;
+    }
+    .numero-valor {
+      font-family: var(--ff-titulo);
+      font-size: clamp(2.4rem, 4vw, 3.4rem);
+      color: var(--branco);
+      line-height: 1;
+      margin-bottom: 8px;
+      display: block;
+      letter-spacing: 1px;
+    }
+    .numero-label {
+      font-family: var(--ff-cond);
+      font-size: 0.78rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      display: block;
+    }
+
+    /* ══════════════════════════════════
+       MARCAS
+    ══════════════════════════════════ */
+    #marcas {
+      background: var(--cinza-esc);
+    }
+    .marcas-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+    .marca-item {
+      background: var(--cinza-med);
+      border: 1px solid var(--cinza-brd);
+      border-radius: 10px;
+      padding: 24px 16px;
+      text-align: center;
+      transition: border-color var(--tr), transform var(--tr), background var(--tr);
+    }
+    .marca-item:hover {
+      border-color: rgba(232,93,4,0.5);
+      transform: translateY(-4px);
+      background: rgba(232,93,4,0.06);
+    }
+    .marca-logo {
+      font-family: var(--ff-titulo);
+      font-size: 1.3rem;
+      letter-spacing: 2px;
+      color: var(--branco);
+      display: block;
+      margin-bottom: 6px;
+    }
+    .marca-desc {
+      font-family: var(--ff-cond);
+      font-size: 0.7rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--texto-muted);
+    }
+    .marca-item i {
+      font-size: 1.8rem;
+      color: var(--laranja);
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    /* ══════════════════════════════════
+       COMO COMPRAR
+    ══════════════════════════════════ */
+    #como-comprar {
+      background: var(--preto);
+    }
+    .passos-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+    }
+    .passos-grid::before {
+      content: '';
+      position: absolute;
+      top: 38px; left: 12.5%; right: 12.5%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--laranja), var(--azul-claro), var(--laranja));
+      z-index: 0;
+    }
+    .passo-item {
+      text-align: center;
+      padding: 0 20px 0;
+      position: relative;
+      z-index: 1;
+    }
+    .passo-num {
+      width: 76px; height: 76px;
+      border-radius: 50%;
+      background: var(--cinza-med);
+      border: 2px solid var(--cinza-brd);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      font-family: var(--ff-titulo);
+      font-size: 1.6rem;
+      color: var(--laranja);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      transition: all var(--tr);
+      position: relative;
+    }
+    .passo-num span {
+      position: absolute;
+      bottom: -5px; right: -5px;
+      width: 22px; height: 22px;
+      background: var(--laranja);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--branco);
+      font-size: 0.6rem;
+      font-family: var(--ff-cond);
+      font-weight: 700;
+    }
+    .passo-item:hover .passo-num {
+      background: var(--laranja);
+      border-color: var(--laranja);
+      color: var(--branco);
+      transform: scale(1.08);
+      box-shadow: 0 8px 28px rgba(232,93,4,0.4);
+    }
+    .passo-item h3 {
+      font-family: var(--ff-cond);
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--branco);
+      margin-bottom: 10px;
+    }
+    .passo-item p {
+      font-size: 0.86rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.65;
+    }
+
+    /* ══════════════════════════════════
+       FAQ
+    ══════════════════════════════════ */
+    #faq {
+      background: var(--cinza-esc);
+    }
+    .faq-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      border: 1px solid var(--cinza-brd);
+      border-radius: 12px;
+      margin-bottom: 12px;
+      overflow: hidden;
+      transition: border-color var(--tr), box-shadow var(--tr);
+    }
+    .faq-item.open {
+      border-color: var(--laranja);
+      box-shadow: 0 4px 20px rgba(232,93,4,0.12);
+    }
+    .faq-question {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      background: var(--cinza-med);
+      border: none;
+      padding: 20px 24px;
+      text-align: left;
+      cursor: pointer;
+      font-family: var(--ff-corpo);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--branco);
+      transition: background var(--tr), color var(--tr);
+    }
+    .faq-question:hover { background: rgba(232,93,4,0.08); color: var(--laranja); }
+    .faq-item.open .faq-question { background: rgba(232,93,4,0.08); color: var(--laranja); }
+    .faq-icon {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.75rem;
+      color: var(--branco);
+      transition: background var(--tr), transform var(--tr), color var(--tr);
+    }
+    .faq-item.open .faq-icon {
+      background: var(--laranja);
+      border-color: var(--laranja);
+      color: var(--branco);
+      transform: rotate(45deg);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+      background: var(--cinza-med);
+    }
+    .faq-item.open .faq-answer { max-height: 300px; }
+    .faq-answer p {
+      padding: 0 24px 22px;
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.8;
+    }
+
+    /* ── Responsividade novas seções ── */
+    @media (max-width: 1023px) {
+      .marcas-grid { grid-template-columns: repeat(3, 1fr); }
+      .passos-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+      .passos-grid::before { display: none; }
+    }
+    @media (max-width: 767px) {
+      .numeros-grid { grid-template-columns: repeat(2, 1fr); }
+      .numero-item:nth-child(2) { border-right: none; }
+      .numero-item { border-bottom: 1px solid rgba(255,255,255,0.2); }
+      .numero-item:nth-child(3), .numero-item:nth-child(4) { border-bottom: none; }
+      .marcas-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 599px) {
+      .numeros-grid { grid-template-columns: repeat(2, 1fr); }
+      .marcas-grid { grid-template-columns: repeat(2, 1fr); }
+      .passos-grid { grid-template-columns: 1fr; gap: 28px; }
+      .faq-question { font-size: 0.88rem; padding: 16px 18px; }
+      .faq-answer p { font-size: 0.84rem; padding: 0 18px 18px; }
+    }
+    @media (max-width: 479px) {
+      .numeros-grid { grid-template-columns: 1fr 1fr; }
+      .numero-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.2); }
+      .numero-item:last-child { border-bottom: none; }
+      .numero-valor { font-size: 2.2rem; }
+      .passo-num { width: 64px; height: 64px; font-size: 1.4rem; }
+    }
+    @media (max-width: 360px) {
+      .marcas-grid { grid-template-columns: 1fr 1fr; }
+      .numero-valor { font-size: 2rem; }
+    }
     /* ══════════════════════════════════
        LIGHTBOX
     ══════════════════════════════════ */
@@ -1493,7 +1765,9 @@
       <nav class="nav-links" aria-label="Navegação principal">
         <a href="#sobre">Sobre</a>
         <a href="#produtos">Produtos</a>
+        <a href="#como-comprar">Como comprar</a>
         <a href="#premium">Plano Premium</a>
+        <a href="#faq">FAQ</a>
         <a href="#contato">Contato</a>
         <a href="https://wa.me/5554994205545" target="_blank" rel="noopener noreferrer" class="nav-cta">
           <i class="fa-brands fa-whatsapp"></i> WhatsApp
@@ -1510,7 +1784,9 @@
   <nav id="navMenu" aria-label="Menu mobile">
     <a href="#sobre">Sobre</a>
     <a href="#produtos">Produtos</a>
+    <a href="#como-comprar">Como comprar</a>
     <a href="#premium">Plano Premium</a>
+    <a href="#faq">FAQ</a>
     <a href="#contato">Contato</a>
     <a href="https://wa.me/5554994205545" target="_blank" rel="noopener noreferrer" class="nav-cta">
       <i class="fa-brands fa-whatsapp"></i> Falar no WhatsApp
@@ -1581,6 +1857,34 @@
       <span class="marquee-item"><i class="fa-solid fa-circle"></i> Envio Seguro</span>
     </div>
   </div>
+
+  <!-- ══════ NÚMEROS ══════ -->
+  <section id="numeros" aria-label="Números em destaque">
+    <div class="container">
+      <div class="numeros-grid">
+        <div class="numero-item fade-scale d1">
+          <i class="fa-solid fa-car numero-icon"></i>
+          <span class="numero-valor"><span class="count-num" data-target="500" data-suffix="+">0+</span></span>
+          <span class="numero-label">Peças no portfólio</span>
+        </div>
+        <div class="numero-item fade-scale d2">
+          <i class="fa-solid fa-users numero-icon"></i>
+          <span class="numero-valor"><span class="count-num" data-target="200" data-suffix="+">0+</span></span>
+          <span class="numero-label">Clientes satisfeitos</span>
+        </div>
+        <div class="numero-item fade-scale d3">
+          <i class="fa-solid fa-globe numero-icon"></i>
+          <span class="numero-valor"><span class="count-num" data-target="10" data-suffix="+">0+</span></span>
+          <span class="numero-label">Marcas importadas</span>
+        </div>
+        <div class="numero-item fade-scale d4">
+          <i class="fa-solid fa-star numero-icon"></i>
+          <span class="numero-valor"><span class="count-num" data-target="5" data-suffix="★">0★</span></span>
+          <span class="numero-label">Avaliação média</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ══════ SOBRE ══════ -->
   <section id="sobre">
@@ -1772,6 +2076,178 @@
           <div class="prod-icon"><i class="fa-solid fa-box-open"></i></div>
           <h3>Envio seguro</h3>
           <p>Embalagens reforçadas com proteção adequada — sua miniatura chega perfeita até você, onde estiver.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════ MARCAS ══════ -->
+  <section id="marcas">
+    <div class="container">
+      <span class="section-tag">Portfólio</span>
+      <h2 class="section-title">Marcas que <span>trabalhamos</span></h2>
+      <p class="section-desc">As melhores marcas do mercado diecast mundial, com peças importadas diretamente para você.</p>
+
+      <div class="marcas-grid">
+        <div class="marca-item fade-scale d1">
+          <i class="fa-solid fa-car"></i>
+          <span class="marca-logo">Hot Wheels</span>
+          <span class="marca-desc">EUA · Mattel</span>
+        </div>
+        <div class="marca-item fade-scale d2">
+          <i class="fa-solid fa-car-side"></i>
+          <span class="marca-logo">Maisto</span>
+          <span class="marca-desc">1:18 · 1:24 · 1:64</span>
+        </div>
+        <div class="marca-item fade-scale d3">
+          <i class="fa-solid fa-trophy"></i>
+          <span class="marca-logo">Bburago</span>
+          <span class="marca-desc">Itália · Premium</span>
+        </div>
+        <div class="marca-item fade-scale d4">
+          <i class="fa-solid fa-flag-checkered"></i>
+          <span class="marca-logo">Greenlight</span>
+          <span class="marca-desc">EUA · Muscle Cars</span>
+        </div>
+        <div class="marca-item fade-scale d5">
+          <i class="fa-solid fa-gem"></i>
+          <span class="marca-logo">AutoWorld</span>
+          <span class="marca-desc">Colecionáveis</span>
+        </div>
+        <div class="marca-item fade-scale d1">
+          <i class="fa-solid fa-star"></i>
+          <span class="marca-logo">Johnny Lightning</span>
+          <span class="marca-desc">1:64 · Clássicos</span>
+        </div>
+        <div class="marca-item fade-scale d2">
+          <i class="fa-solid fa-crown"></i>
+          <span class="marca-logo">Matchbox</span>
+          <span class="marca-desc">UK · Clássico</span>
+        </div>
+        <div class="marca-item fade-scale d3">
+          <i class="fa-solid fa-fire"></i>
+          <span class="marca-logo">Motormax</span>
+          <span class="marca-desc">1:24 · Detalhes</span>
+        </div>
+        <div class="marca-item fade-scale d4">
+          <i class="fa-solid fa-bolt"></i>
+          <span class="marca-logo">Kinsmart</span>
+          <span class="marca-desc">Ásia · Variedades</span>
+        </div>
+        <div class="marca-item fade-scale d5">
+          <i class="fa-solid fa-medal"></i>
+          <span class="marca-logo">e Muito Mais</span>
+          <span class="marca-desc">Peças exclusivas</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════ COMO COMPRAR ══════ -->
+  <section id="como-comprar">
+    <div class="container">
+      <span class="section-tag">Processo</span>
+      <h2 class="section-title">Como <span>comprar</span></h2>
+      <p class="section-desc">Simples, rápido e seguro. Em 4 passos a miniatura que você quer chega até você.</p>
+
+      <div class="passos-grid">
+        <div class="passo-item fade-scale d1">
+          <div class="passo-num">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span>01</span>
+          </div>
+          <h3>Fale conosco</h3>
+          <p>Entre em contato pelo WhatsApp e diga qual miniatura você está procurando ou peça para ver o catálogo disponível.</p>
+        </div>
+        <div class="passo-item fade-scale d2">
+          <div class="passo-num">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <span>02</span>
+          </div>
+          <h3>Escolha sua peça</h3>
+          <p>Navegue pelo nosso portfólio, escolha o modelo que mais te agrada e confirme disponibilidade e preço.</p>
+        </div>
+        <div class="passo-item fade-scale d3">
+          <div class="passo-num">
+            <i class="fa-solid fa-lock"></i>
+            <span>03</span>
+          </div>
+          <h3>Feche o pedido</h3>
+          <p>Confirme os dados de entrega e realize o pagamento com segurança. Trabalhamos com Pix e transferência.</p>
+        </div>
+        <div class="passo-item fade-scale d4">
+          <div class="passo-num">
+            <i class="fa-solid fa-box-open"></i>
+            <span>04</span>
+          </div>
+          <h3>Receba em casa</h3>
+          <p>Embalamos com cuidado e enviamos para todo o Brasil. Sua miniatura chega perfeita, pronta para a coleção.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════ FAQ ══════ -->
+  <section id="faq">
+    <div class="container">
+      <span class="section-tag">Dúvidas</span>
+      <h2 class="section-title">Perguntas <span>frequentes</span></h2>
+      <p class="section-desc">Tudo o que você precisa saber antes de comprar.</p>
+
+      <div class="faq-wrap">
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Vocês enviam para todo o Brasil?
+            <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+          </button>
+          <div class="faq-answer">
+            <p>Sim! Enviamos para todo o Brasil via Correios ou transportadora. Todas as peças são embaladas com proteção reforçada para garantir que a miniatura chegue perfeita até você.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            As miniaturas são originais e importadas?
+            <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+          </button>
+          <div class="faq-answer">
+            <p>Sim, todas as nossas miniaturas são 100% originais e importadas diretamente das melhores marcas do mercado diecast mundial. Garantimos autenticidade em cada peça.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Quais formas de pagamento vocês aceitam?
+            <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+          </button>
+          <div class="faq-answer">
+            <p>Aceitamos Pix e transferência bancária. O pagamento é feito após a confirmação do pedido pelo WhatsApp.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Como funciona o Plano Premium?
+            <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+          </button>
+          <div class="faq-answer">
+            <p>O Plano Premium dá acesso antecipado a lançamentos, prioridade na compra de peças exclusivas, descontos especiais e atendimento diferenciado. Entre em contato pelo WhatsApp para saber mais.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Posso encomendar uma miniatura específica?
+            <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+          </button>
+          <div class="faq-answer">
+            <p>Sim! Se você está procurando um modelo específico, entre em contato pelo WhatsApp e faremos o possível para encontrar a peça que faltava na sua coleção.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Qual é o prazo de entrega?
+            <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+          </button>
+          <div class="faq-answer">
+            <p>O prazo varia conforme a região e a modalidade de envio escolhida. Em média, as entregas ocorrem em 3 a 10 dias úteis após o envio. Você receberá o código de rastreamento assim que o pedido for postado.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -2018,6 +2494,45 @@
       }
     }
     setTimeout(typeWrite, 900);
+
+    /* ── COUNTER SEÇÃO NÚMEROS ── */
+    const numerosObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('.count-num').forEach(el => {
+            const target = +el.dataset.target;
+            const suffix = el.dataset.suffix || '';
+            const dur = 1600, step = 16;
+            const inc = target / (dur / step);
+            let cur = 0;
+            const t = setInterval(() => {
+              cur = Math.min(cur + inc, target);
+              el.textContent = Math.floor(cur) + suffix;
+              if (cur >= target) clearInterval(t);
+            }, step);
+          });
+          numerosObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    const numerosEl = document.querySelector('#numeros .numeros-grid');
+    if (numerosEl) numerosObs.observe(numerosEl);
+
+    /* ── FAQ ── */
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(el => {
+          el.classList.remove('open');
+          el.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        });
+        if (!isOpen) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
 
     /* ── COUNTER ── */
     function animateCounter(el) {
