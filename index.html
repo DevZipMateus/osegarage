@@ -1184,6 +1184,84 @@
       .hero-logo-big { animation: none; }
       .fade-up, .fade-left, .fade-right, .fade-scale { opacity: 1; transform: none; transition: none; }
     }
+    /* ══════════════════════════════════
+       LIGHTBOX
+    ══════════════════════════════════ */
+    #lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: rgba(0,0,0,0.92);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      backdrop-filter: blur(6px);
+    }
+    #lightbox.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    #lightbox img {
+      max-width: 90vw;
+      max-height: 88vh;
+      border-radius: 10px;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.7);
+      transform: scale(0.92);
+      transition: transform 0.3s ease;
+      object-fit: contain;
+      user-select: none;
+    }
+    #lightbox.open img { transform: scale(1); }
+    .lb-close {
+      position: absolute;
+      top: 20px; right: 24px;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: var(--branco);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background var(--tr), transform var(--tr);
+    }
+    .lb-close:hover { background: var(--laranja); transform: rotate(90deg); }
+    .lb-prev, .lb-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: var(--branco);
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background var(--tr);
+    }
+    .lb-prev { left: 20px; }
+    .lb-next { right: 20px; }
+    .lb-prev:hover, .lb-next:hover { background: var(--laranja); border-color: var(--laranja); }
+    .lb-counter {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--ff-cond);
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      color: rgba(255,255,255,0.5);
+    }
+    .galeria-item { cursor: zoom-in; }
+
   </style>
 </head>
 <body>
@@ -1603,6 +1681,15 @@
     <script src="https://vaabpicspdbolvutnscp.supabase.co/functions/v1/get-footer-iframe"></script>
   </footer>
 
+  <!-- ══════ LIGHTBOX ══════ -->
+  <div id="lightbox" role="dialog" aria-modal="true" aria-label="Visualização de imagem">
+    <button class="lb-close" id="lbClose" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
+    <button class="lb-prev" id="lbPrev" aria-label="Anterior"><i class="fa-solid fa-chevron-left"></i></button>
+    <img id="lbImg" src="" alt="Imagem ampliada">
+    <button class="lb-next" id="lbNext" aria-label="Próxima"><i class="fa-solid fa-chevron-right"></i></button>
+    <span class="lb-counter" id="lbCounter"></span>
+  </div>
+
   <!-- WhatsApp flutuante -->
   <a href="https://wa.me/5554994205545" target="_blank" rel="noopener noreferrer"
      class="whatsapp-float" aria-label="WhatsApp Osegarage">
@@ -1653,6 +1740,46 @@
 
     document.querySelectorAll('.fade-up, .fade-left, .fade-right, .fade-scale').forEach(el => {
       observer.observe(el);
+    });
+
+    /* ── LIGHTBOX ── */
+    const lightbox = document.getElementById('lightbox');
+    const lbImg    = document.getElementById('lbImg');
+    const lbCounter = document.getElementById('lbCounter');
+    const galleryImgs = [...document.querySelectorAll('.galeria-item img')];
+    let lbIndex = 0;
+
+    function lbOpen(idx) {
+      lbIndex = idx;
+      lbImg.src = galleryImgs[idx].src;
+      lbImg.alt = galleryImgs[idx].alt;
+      lbCounter.textContent = (idx + 1) + ' / ' + galleryImgs.length;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function lbClose() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function lbNav(dir) {
+      lbIndex = (lbIndex + dir + galleryImgs.length) % galleryImgs.length;
+      lbImg.src = galleryImgs[lbIndex].src;
+      lbImg.alt = galleryImgs[lbIndex].alt;
+      lbCounter.textContent = (lbIndex + 1) + ' / ' + galleryImgs.length;
+    }
+
+    galleryImgs.forEach((img, i) => {
+      img.closest('.galeria-item').addEventListener('click', () => lbOpen(i));
+    });
+    document.getElementById('lbClose').addEventListener('click', lbClose);
+    document.getElementById('lbPrev').addEventListener('click', () => lbNav(-1));
+    document.getElementById('lbNext').addEventListener('click', () => lbNav(1));
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) lbClose(); });
+    document.addEventListener('keydown', e => {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') lbClose();
+      if (e.key === 'ArrowLeft') lbNav(-1);
+      if (e.key === 'ArrowRight') lbNav(1);
     });
 
     /* ── ACTIVE NAV ── */
