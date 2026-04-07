@@ -1277,6 +1277,93 @@
     }
     .galeria-item { cursor: zoom-in; }
 
+    /* ══════════════════════════════════
+       MARQUEE
+    ══════════════════════════════════ */
+    .marquee-strip {
+      background: var(--laranja);
+      padding: 13px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .marquee-track {
+      display: inline-flex;
+      gap: 0;
+      animation: marqueeScroll 22s linear infinite;
+    }
+    .marquee-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--ff-titulo);
+      font-size: 1rem;
+      letter-spacing: 2px;
+      color: var(--branco);
+      padding: 0 28px;
+    }
+    .marquee-item i { font-size: 0.7rem; opacity: 0.7; }
+    @keyframes marqueeScroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ══════════════════════════════════
+       TYPEWRITER
+    ══════════════════════════════════ */
+    .typewriter-cursor::after {
+      content: '|';
+      color: var(--laranja);
+      animation: blink 0.75s step-end infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
+    }
+
+    /* ══════════════════════════════════
+       RIPPLE NOS BOTÕES
+    ══════════════════════════════════ */
+    .btn { position: relative; overflow: hidden; }
+    .ripple {
+      position: absolute;
+      border-radius: 50%;
+      transform: scale(0);
+      animation: rippleAnim 0.55s linear;
+      background: rgba(255,255,255,0.25);
+      pointer-events: none;
+    }
+    @keyframes rippleAnim {
+      to { transform: scale(4); opacity: 0; }
+    }
+
+    /* ══════════════════════════════════
+       GLOW WHATSAPP FLOAT
+    ══════════════════════════════════ */
+    .whatsapp-float {
+      animation: waPulse 2.8s ease-in-out infinite;
+    }
+    @keyframes waPulse {
+      0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
+      50%       { box-shadow: 0 4px 36px rgba(37,211,102,0.75), 0 0 0 8px rgba(37,211,102,0.1); }
+    }
+
+    /* ══════════════════════════════════
+       SPOTLIGHT CURSOR (hero)
+    ══════════════════════════════════ */
+    #hero-spotlight {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background: radial-gradient(circle 300px at var(--mx,50%) var(--my,50%), rgba(232,93,4,0.08), transparent 70%);
+      transition: background 0.1s;
+    }
+
+    /* ══════════════════════════════════
+       CONTAGEM ANIMADA (stats hero)
+    ══════════════════════════════════ */
+    .counter { display: inline; }
+
   </style>
 </head>
 <body>
@@ -1326,7 +1413,7 @@
           </div>
           <h1>Osegarage<br><span>Miniaturas</span></h1>
           <h2>Miniaturas premium, importadas e exclusivas para colecionadores apaixonados pelo universo automotivo.</h2>
-          <p class="hero-slogan">A miniatura que faltava na sua coleção está aqui</p>
+          <p class="hero-slogan typewriter-cursor" id="heroSlogan"></p>
           <div class="hero-btns">
             <a href="#produtos" class="btn btn-laranja">
               <i class="fa-solid fa-car"></i> Ver coleção
@@ -1337,16 +1424,16 @@
           </div>
           <div class="hero-stats">
             <div class="hero-stat">
-              <strong>Premium</strong>
-              <span>Qualidade</span>
+              <strong><span class="counter" data-target="500" data-suffix="+">0</span></strong>
+              <span>Peças no portfólio</span>
             </div>
             <div class="hero-stat">
-              <strong>100%</strong>
+              <strong><span class="counter" data-target="100" data-suffix="%">0</span></strong>
               <span>Importadas</span>
             </div>
             <div class="hero-stat">
-              <strong>Diecast</strong>
-              <span>Exclusivo</span>
+              <strong><span class="counter" data-target="5" data-suffix="★">0</span></strong>
+              <span>Avaliação</span>
             </div>
           </div>
         </div>
@@ -1356,8 +1443,29 @@
         </div>
       </div>
     </div>
+    <div id="hero-spotlight"></div>
     <div class="hero-stripe"></div>
   </section>
+
+  <!-- ══════ MARQUEE ══════ -->
+  <div class="marquee-strip" aria-hidden="true">
+    <div class="marquee-track">
+      <span class="marquee-item"><i class="fa-solid fa-circle"></i> Diecast Premium</span>
+      <span class="marquee-item"><i class="fa-solid fa-circle"></i> Miniaturas Importadas</span>
+      <span class="marquee-item"><i class="fa-solid fa-circle"></i> Modelos Exclusivos</span>
+      <span class="marquee-item"><i class="fa-solid fa-circle"></i> Colecionáveis Raros</span>
+      <span class="marquee-item"><i class="fa-solid fa-circle"></i> Alta Fidelidade</span>
+      <span class="marquee-item"><i class="fa-solid fa-circle"></i> Plano Premium</span>
+      <span class="marquee-item"><i class="fa-solid fa-circle"></i> Envio Seguro</span>
+      <span class="marquee-item"><i class="fa-solid fa-circle"></i> Diecast Premium</span>
+      <span class="marquee-item"><i class="fa-solid fa-circle"></i> Miniaturas Importadas</span>
+      <span class="marquee-item"><i class="fa-solid fa-circle"></i> Modelos Exclusivos</span>
+      <span class="marquee-item"><i class="fa-solid fa-circle"></i> Colecionáveis Raros</span>
+      <span class="marquee-item"><i class="fa-solid fa-circle"></i> Alta Fidelidade</span>
+      <span class="marquee-item"><i class="fa-solid fa-circle"></i> Plano Premium</span>
+      <span class="marquee-item"><i class="fa-solid fa-circle"></i> Envio Seguro</span>
+    </div>
+  </div>
 
   <!-- ══════ SOBRE ══════ -->
   <section id="sobre">
@@ -1779,6 +1887,83 @@
 
     document.querySelectorAll('.fade-up, .fade-left, .fade-right, .fade-scale').forEach(el => {
       observer.observe(el);
+    });
+
+    /* ── TYPEWRITER ── */
+    const sloganEl = document.getElementById('heroSlogan');
+    const sloganText = 'A miniatura que faltava na sua coleção está aqui';
+    let twIndex = 0;
+    function typeWrite() {
+      if (twIndex <= sloganText.length) {
+        sloganEl.textContent = sloganText.slice(0, twIndex);
+        twIndex++;
+        setTimeout(typeWrite, twIndex === sloganText.length + 1 ? 0 : 38);
+      } else {
+        sloganEl.classList.remove('typewriter-cursor');
+      }
+    }
+    setTimeout(typeWrite, 900);
+
+    /* ── COUNTER ── */
+    function animateCounter(el) {
+      const target = +el.dataset.target;
+      const suffix = el.dataset.suffix || '';
+      const dur = 1800;
+      const step = 16;
+      const inc = target / (dur / step);
+      let cur = 0;
+      const t = setInterval(() => {
+        cur = Math.min(cur + inc, target);
+        el.textContent = Math.floor(cur) + suffix;
+        if (cur >= target) clearInterval(t);
+      }, step);
+    }
+    const counterObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('.counter').forEach(animateCounter);
+          counterObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    const statsEl = document.querySelector('.hero-stats');
+    if (statsEl) counterObs.observe(statsEl);
+
+    /* ── RIPPLE NOS BOTÕES ── */
+    document.querySelectorAll('.btn').forEach(btn => {
+      btn.addEventListener('click', e => {
+        const r = document.createElement('span');
+        r.classList.add('ripple');
+        const rect = btn.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        r.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX-rect.left-size/2}px;top:${e.clientY-rect.top-size/2}px`;
+        btn.appendChild(r);
+        r.addEventListener('animationend', () => r.remove());
+      });
+    });
+
+    /* ── SPOTLIGHT HERO ── */
+    const heroSection = document.getElementById('hero');
+    const spotlight = document.getElementById('hero-spotlight');
+    if (heroSection && spotlight) {
+      heroSection.addEventListener('mousemove', e => {
+        const rect = heroSection.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width * 100).toFixed(1) + '%';
+        const y = ((e.clientY - rect.top)  / rect.height * 100).toFixed(1) + '%';
+        spotlight.style.setProperty('--mx', x);
+        spotlight.style.setProperty('--my', y);
+      });
+    }
+
+    /* ── TILT NOS CARDS ── */
+    document.querySelectorAll('.mvv-card, .prod-card, .premium-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top)  / rect.height - 0.5;
+        card.style.transform = `perspective(700px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) translateY(-6px)`;
+      });
+      card.addEventListener('mouseleave', () => { card.style.transform = ''; });
     });
 
     /* ── LIGHTBOX ── */
